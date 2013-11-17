@@ -29,8 +29,8 @@ with the sound network selected for display. Communication links are initially s
 but to demonstrate the simpulation effect, we switch to the green color for each node sending
 a message. 
 
-It is noticeable that the small networlk at the bottom left is finished, while le big network 
-is still revealing information.
+It is noticeable that the small network at the bottom left is finished, while the big network 
+is still sending information.
 
 
 \begin{figure}[hbtp]
@@ -161,12 +161,20 @@ PROC Mux([]CHAN OF BYTE muxTab, CHAN OF BYTE out)
  \end{lstlisting}
 \subsection {Demuxing in Smalltalk }
 
-Lot of things can occur there by using Obectt oriented facilities for sensor attributes. In this demonstrator, 
-we just decode lines sent from Smalltalk, select the sensor, displays its name, change colour all around,
+Lot of visual representation can occur there by using Object oriented facilities for sensor attributes. In this demonstrator, 
+we just decode lines sent from Smalltalk, select the sensor, displays its name, change colour in the neighborhood all around,
 an place the mouse over its location.
 
-A class MuxReader has been developped for this, and the system code testScan  for decodint on the stream is showne below:
+A class {\tt MuxReader} has been developped as a demonstrator for this, and a sample method {\tt testScan}  for decoding on the stream is shown below:
 \lstinputlisting{MuxReaderclass-testScan.st}
 
+In this code one can see that the mux is repetitively reading lines from
+a file descriptor connected to the simulator. Each line collected is parsed
+to get a process name within the GUI. Then a message is sent to the GUI controller
+to dispatch information to visual objects:
 
+{\tt ugm changeMousePositionFromName: (info at: 2)}
+
+where {\tt info} contains an array similar to {\tt \#(49 \#P50 1 49)}.
+ 
 
